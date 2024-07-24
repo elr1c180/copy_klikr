@@ -18,10 +18,10 @@ const MainComponent = () => {
             setEnergy(prevEnergyCount => prevEnergyCount - 1);
 
             
-            if (window.Telegram.WebApp.hapticFeedback) {
+            if (window.Telegram.WebApp.HapticFeedback) {
                 console.log('HapticFeedback доступен.');
                 // Пример использования HapticFeedback
-                window.Telegram.WebApp.hapticFeedback.impactOccurred('light');
+                window.Telegram.WebApp.HapticFeedback.impactOccurred('light');
               }
         
 
