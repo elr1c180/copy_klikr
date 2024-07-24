@@ -10,12 +10,18 @@ const MainComponent = () => {
     // const [userName, setUserName] = useState('');
     const [clickCount, setClickCount] = useState(0);
     const [clickPositions, setClickPositions] = useState([]);
-    const [energyCount, setEnergy] = useState(2000);
+    const [energyCount, setEnergy] = useState(3);
     const [isClicked, setIsClicked] = useState(false);
 
     const handleClick = (event) => {
         setClickCount(clickCount + 1);
-        setEnergy(energyCount - 1);
+        if (energyCount > 0) {
+            setEnergy(energyCount - 1);
+        }
+        else {
+            window.Telegram.WebApp.showAlert("Energy is lost!");
+        }
+        
         setIsClicked(true);
 
         setCounter()
