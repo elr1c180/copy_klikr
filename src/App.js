@@ -4,9 +4,15 @@ import Main from './pages/Main';
 import Rewards from './pages/Rewards';
 
 function App() {
-  window.Telegram.WebApp.ready(function() {
-    window.Telegram.WebApp.expand();
-});
+  useEffect(() => {
+    // Подключаем Telegram Web App SDK
+    if (window.Telegram && window.Telegram.WebApp) {
+      window.Telegram.WebApp.ready(function() {
+        window.Telegram.WebApp.expand();
+      });
+    }
+  }, []);
+
   return (
     <BrowserRouter>
   
