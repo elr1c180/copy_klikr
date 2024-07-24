@@ -5,14 +5,8 @@ import Rewards from './pages/Rewards';
 import { useEffect } from 'react';
 
 function App() {
-  useEffect(() => {
-    // Подключаем Telegram Web App SDK
-    if (window.Telegram && window.Telegram.WebApp) {
-      window.Telegram.WebApp.ready(function() {
-        window.Telegram.WebApp.expand();
-      });
-    }
-  }, []);
+  const tele = window.Telegram.WebApp;
+  tele.expand()
 
   return (
     <BrowserRouter>
