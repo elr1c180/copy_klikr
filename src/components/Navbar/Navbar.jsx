@@ -11,33 +11,33 @@ const Navbar = () => {
     return (
         <div className={cl.Navbar}>
 
-            <div className={cl.NavbarItem}>
-                <div className={cl.icon}>   
-                    <img src={rocket} alt="" />
-                </div>
-                <span>Boost</span>
-            </div>
+                <Link to="/rewards/"  className={cl.NavbarItem}>
+                        <div className={cl.icon}>   
+                            <img src={rocket} alt="" />
+                        </div>
+                        <span>Boost</span>
+                </Link>
 
-            <div className={cl.NavbarItem}>
-                <div className={cl.icon}>   
+            <Link to="/rewards/" className={cl.NavbarItem}>
+                <div className={cl.icon}>  
                     <img src={leag} alt="" />
                 </div>
                 <span>Leagues</span>
-            </div>
+            </Link>
 
-            <Link to="/rewards/"><div className={cl.NavbarItem}>
+            <Link to="/rewards/"  className={cl.NavbarItem}>
                 <div className={cl.icon}>   
                     <img src={rewards} alt="" />
                 </div>
                 <span>Rewards</span>
-            </div></Link>
+            </Link>
 
-            <div className={cl.NavbarItem}>
-                <div className={cl.icon}>   
-                    <img src={profile} alt="" />
-                </div>
+            <Link to="/rewards/" className={cl.NavbarItem}>
+                    <div className={cl.icon}>   
+                        <img src={profile} alt="" />
+                    </div>
                 <span>Profile</span>
-            </div>
+            </Link>
         </div>
     )
 }

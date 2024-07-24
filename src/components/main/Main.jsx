@@ -14,8 +14,8 @@ const MainComponent = () => {
     const [isClicked, setIsClicked] = useState(false);
 
     const handleClick = (event) => {
-        setClickCount(clickCount + 1);
         if (energyCount > 0) {
+            setClickCount(clickCount + 1);
             setEnergy(energyCount - 1);
         }
         else {
