@@ -11,11 +11,13 @@
 .Clicker {
     height: 25%;
     text-align: center;
+    position: relative;
 }
 
 .Clicker img {
     width: 45%;
     transition: 0.5s all;
+    position: relative
 }
 
 .Energy {

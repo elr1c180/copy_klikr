@@ -3,40 +3,47 @@ import cl from './Main.module.css'
 import clicker from './dollar.png'
 import energy from './lightning.png'
 import top from './chart.png'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const MainComponent = () => {
-    const [counter, setCounter] = useState(0);
-    // const [userName, setUserName] = useState('');
     const [clickCount, setClickCount] = useState(0);
-    const [clickPositions, setClickPositions] = useState([]);
-    const [energyCount, setEnergy] = useState(3);
-    const [isClicked, setIsClicked] = useState(false);
+  const [energyCount, setEnergy] = useState(2000);
+  const [isClicked, setIsClicked] = useState(false);
+  const [clickPositions, setClickPositions] = useState([]);
+  const [counter, setCounter] = useState(0);
 
-    const handleClick = (event) => {
-        if (energyCount > 0) {
-            setClickCount(clickCount + 1);
-            setEnergy(energyCount - 1);
-        }
-        else {
-            window.Telegram.WebApp.showAlert("Energy is lost!");
-        }
-        
-        setIsClicked(true);
+  const handleClick = (event) => {
+    if (energyCount > 0) {
+      setClickCount(prevClickCount => prevClickCount + 1);
+      setEnergy(prevEnergyCount => prevEnergyCount - 1);
+    } else {
+      window.Telegram.WebApp.showAlert("Energy is lost!");
+    }
+    
+    setIsClicked(true);
+    setCounter(prevCounter => prevCounter + 1);
 
-        setCounter()
+    const boundingRect = event.currentTarget.getBoundingClientRect();
+    const offsetX = event.touches ? event.touches[0].clientX - boundingRect.left : event.clientX - boundingRect.left;
+    const offsetY = event.touches ? event.touches[0].clientY - boundingRect.top : event.clientY - boundingRect.top;
 
-        const boundingRect = event.currentTarget.getBoundingClientRect();
-        const offsetX = event.clientX - boundingRect.left;
-        const offsetY = event.clientY - boundingRect.top;
+    setClickPositions(prevClickPositions => [
+      ...prevClickPositions, 
+      { x: offsetX, y: offsetY, id: counter }
+    ]);
 
-        setClickPositions([...clickPositions, { x: offsetX, y: offsetY, id: counter }]);
+    setTimeout(() => {
+      setIsClicked(false);
+    }, 500);
+  };
 
-        
-        setTimeout(() => {
-            setIsClicked(false);
-        }, 500);
-    };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setClickPositions(prevClickPositions => prevClickPositions.filter(pos => pos.id !== counter - 10));
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [counter]);
 
     return (
         <div className={cl.MainComponent}>
@@ -52,16 +59,16 @@ const MainComponent = () => {
             </div>
             
             <div className={cl.Clicker}>
-                <img src={clicker} className={`${isClicked ? cl.Clicked : ''}`} alt="" onClick={handleClick}/>
+                <img src={clicker} className={`${isClicked ? cl.Clicked : ''}`} alt="" onTouchStart={handleClick}/>
                 {clickPositions.map((pos) => (
-                <div
-                    key={pos.id}
-                    className={cl.clickCounter}
-                    style={{ top: `${pos.y+220}px`, left: `${pos.x+100}px` }}
-                >
-                    +1
-                </div>
-            ))}
+          <div
+            key={pos.id}
+            className={cl.clickCounter}
+            style={{ top: `${pos.y}px`, left: `${pos.x+80}px` }}
+          >
+            +1
+          </div>
+        ))}
             </div>
 
             <div className={cl.Energy}>
