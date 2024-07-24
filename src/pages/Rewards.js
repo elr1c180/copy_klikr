@@ -4,7 +4,11 @@ import Navbar from "../components/Navbar/Navbar";
 
 const Rewards = () => {
 
+    var BackButton = window.Telegram.WebApp.BackButton;
+    BackButton.show();
+
     return(
+        
         <div>
             <div className={cl.rewardsHeader}>
                 <h5>ClickTap league</h5>
