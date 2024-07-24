@@ -7,43 +7,46 @@ import { useState, useEffect } from "react";
 
 const MainComponent = () => {
     const [clickCount, setClickCount] = useState(0);
-  const [energyCount, setEnergy] = useState(2000);
-  const [isClicked, setIsClicked] = useState(false);
-  const [clickPositions, setClickPositions] = useState([]);
-  const [counter, setCounter] = useState(0);
+    const [energyCount, setEnergy] = useState(2000);
+    const [isClicked, setIsClicked] = useState(false);
+    const [clickPositions, setClickPositions] = useState([]);
+    const [counter, setCounter] = useState(0);
 
-  const handleClick = (event) => {
-    if (energyCount > 0) {
-      setClickCount(prevClickCount => prevClickCount + 1);
-      setEnergy(prevEnergyCount => prevEnergyCount - 1);
-    } else {
-      window.Telegram.WebApp.showAlert("Energy is lost!");
-    }
-    
-    setIsClicked(true);
-    setCounter(prevCounter => prevCounter + 1);
+    const handleClick = (event) => {
+        if (energyCount > 0) {
+        setClickCount(prevClickCount => prevClickCount + 1);
+        setEnergy(prevEnergyCount => prevEnergyCount - 1);
+        if (navigator.vibrate) {
+            navigator.vibrate(100); 
+          }
+        } else {
+        window.Telegram.WebApp.showAlert("Energy is lost!");
+        }
+        
+        setIsClicked(true);
+        setCounter(prevCounter => prevCounter + 1);
 
-    const boundingRect = event.currentTarget.getBoundingClientRect();
-    const offsetX = event.touches ? event.touches[0].clientX - boundingRect.left : event.clientX - boundingRect.left;
-    const offsetY = event.touches ? event.touches[0].clientY - boundingRect.top : event.clientY - boundingRect.top;
+        const boundingRect = event.currentTarget.getBoundingClientRect();
+        const offsetX = event.touches ? event.touches[0].clientX - boundingRect.left : event.clientX - boundingRect.left;
+        const offsetY = event.touches ? event.touches[0].clientY - boundingRect.top : event.clientY - boundingRect.top;
 
-    setClickPositions(prevClickPositions => [
-      ...prevClickPositions, 
-      { x: offsetX, y: offsetY, id: counter }
-    ]);
+        setClickPositions(prevClickPositions => [
+        ...prevClickPositions, 
+        { x: offsetX, y: offsetY, id: counter }
+        ]);
 
-    setTimeout(() => {
-      setIsClicked(false);
-    }, 500);
-  };
+        setTimeout(() => {
+        setIsClicked(false);
+        }, 500);
+    };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setClickPositions(prevClickPositions => prevClickPositions.filter(pos => pos.id !== counter - 10));
-    }, 1000);
+    useEffect(() => {
+        const interval = setInterval(() => {
+        setClickPositions(prevClickPositions => prevClickPositions.filter(pos => pos.id !== counter - 10));
+        }, 1000);
 
-    return () => clearInterval(interval);
-  }, [counter]);
+        return () => clearInterval(interval);
+    }, [counter]);
 
     return (
         <div className={cl.MainComponent}>
