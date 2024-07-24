@@ -26,16 +26,20 @@
     width: 90%;
     text-align: center;
     color: white;
-    margin-top: 25%
+    margin-top: 25%;
+    display:flex;
 }
 
 .energyBar {
     width: 70%;
     accent-color: #F9C43C;
+    margin-top: 2%;
 }
 
 label {
     margin-right: 7%;
+    width: 20%;
+    display: flex;
 }
 
 label > span {
