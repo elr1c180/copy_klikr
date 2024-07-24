@@ -17,10 +17,11 @@ const MainComponent = () => {
             setClickCount(prevClickCount => prevClickCount + 1);
             setEnergy(prevEnergyCount => prevEnergyCount - 1);
 
-            // Вибрация при клике
-            if (navigator.vibrate) {
-                navigator.vibrate(50); // 50 миллисекунд вибрации
-            }
+            if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.hapticFeedback) {
+                const hapticFeedback = window.Telegram.WebApp.hapticFeedback;
+                hapticFeedback.impactOccurred('light'); // или 'medium'
+              }
+        
 
         } else {
             window.Telegram.WebApp.showAlert("Energy is lost!");
