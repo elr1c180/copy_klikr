@@ -1,11 +1,20 @@
 import React from "react";
 import cl from './src/Rewards/Rewards.module.css'
 import Navbar from "../components/Navbar/Navbar";
+import { useNavigate } from 'react-router-dom';
 
 const Rewards = () => {
 
     var BackButton = window.Telegram.WebApp.BackButton;
     BackButton.show();
+
+    BackButton.onClick(function() {
+        WebApp.showAlert("BackButton clicked");
+        BackButton.hide();
+    });
+    WebApp.onEvent('backButtonClicked', function() {
+        navigate('/main');
+    });
 
     return(
         
