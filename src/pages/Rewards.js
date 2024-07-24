@@ -1,10 +1,9 @@
 import React from "react";
 import cl from './src/Rewards/Rewards.module.css'
-import Navbar from "../components/Navbar/Navbar";
 import { useNavigate } from 'react-router-dom';
 
 const Rewards = () => {
-
+    const navigate = useNavigate();
     var BackButton = window.Telegram.WebApp.BackButton;
     BackButton.show();
 
@@ -72,7 +71,6 @@ const Rewards = () => {
                 <div className={cl.Place}><p>1.Place</p></div>
                 <div className={cl.Reward}><p>300$</p></div>
             </div>
-            <Navbar/>
         </div>
     )
 }
