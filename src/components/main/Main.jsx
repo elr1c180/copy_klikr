@@ -3,8 +3,11 @@ import cl from './Main.module.css'
 import clicker from './dollar.png'
 import energy from './lightning.png'
 import top from './chart.png'
+import { useState } from "react";
 
 const MainComponent = () => {
+
+    // const [count, SetCount] = useState(0)
 
     return (
         <div className={cl.MainComponent}>
@@ -16,7 +19,7 @@ const MainComponent = () => {
                 <span className={cl.End}>Ends in</span>
             </div>
             <div className={cl.Score}>
-                <h2>7,306</h2>
+                <h2>0</h2>
             </div>
             <div className={cl.Clicker}>
                 <img src={clicker} alt=""/>
