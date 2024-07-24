@@ -18,8 +18,7 @@ const MainComponent = () => {
             setEnergy(prevEnergyCount => prevEnergyCount - 1);
 
             
-            const hapticFeedback = window.Telegram.WebApp.hapticFeedback;
-            hapticFeedback.impactOccurred('light'); // или 'medium'
+            window.Telegram.WebApp.hapticFeedback.impactOccurred('light');
         
 
         } else {
