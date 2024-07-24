@@ -3,8 +3,8 @@ import Navbar from "../components/Navbar/Navbar";
 import MainComponent from "../components/main/Main";
 
 const Main = () => {
-    window.Telegram.WebApp.setBackgroundColor('#000000');
-    window.Telegram.WebApp.setHeaderColor('#ffffff');
+    window.Telegram.WebApp.setBackgroundColor('#FFFFFF');
+    window.Telegram.WebApp.setHeaderColor('#000000');
     return (
         <div>
             <MainComponent/>
