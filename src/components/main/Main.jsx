@@ -16,9 +16,8 @@ const MainComponent = () => {
         if (energyCount > 0) {
         setClickCount(prevClickCount => prevClickCount + 1);
         setEnergy(prevEnergyCount => prevEnergyCount - 1);
-        if (window.navigator.vibrate) {
-            window.navigator.vibrate(100); 
-          }
+        
+        window.navigator.vibrate(100); 
         } else {
         window.Telegram.WebApp.showAlert("Energy is lost!");
         }
