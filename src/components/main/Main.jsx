@@ -2,7 +2,7 @@ import React from "react";
 import cl from './Main.module.css'
 import clicker from './dollar.png'
 import energy from './lightning.png'
-import top from './top.png'
+import top from './chart.png'
 
 const MainComponent = () => {
 
@@ -13,6 +13,7 @@ const MainComponent = () => {
                     <img src={top} alt="" />
                     <span>Place 27k <i class="fa-solid fa-chevron-right"></i></span>
                 </div>
+                <span className={cl.End}>Ends in</span>
             </div>
             <div className={cl.Score}>
                 <h2>7,306</h2>
