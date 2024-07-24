@@ -9,6 +9,7 @@
 }
 
 .Clicker {
+    height: 25%;
     text-align: center;
 }
 
@@ -65,4 +66,42 @@ label > span {
 
 .End {
     color: #B1B0B5;
+}
+
+.Clicked {
+    width: 43%!important;
+    transition: 0.5s all;
+}
+
+.clickCounter {
+    position: absolute;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 25px;
+    font-weight: 600;
+    pointer-events: none;
+    animation: fadeInOut 1s ease-in-out forwards;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-130px);
+    }
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-130px);
+    }
 }
