@@ -1,0 +1,24 @@
+
+.Navbar {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    /* position: absolute; */
+    background: #d8d8d863;
+    padding: 5px 10px;
+    border-radius: 10px;
+    bottom: 0;
+    left: 50%;
+}
+
+.NavbarItem {
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    color: white;
+    font-size: 14px;
+    font-weight: lighter;
+}
