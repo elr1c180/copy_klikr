@@ -4,6 +4,7 @@ import rocket from './rocket.png'
 import leag from './leag.png'
 import rewards from './medal.png'
 import profile from './profile.png'
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
 
@@ -24,12 +25,12 @@ const Navbar = () => {
                 <span>Leagues</span>
             </div>
 
-            <div className={cl.NavbarItem}>
+            <Link to="/rewards/"><div className={cl.NavbarItem}>
                 <div className={cl.icon}>   
                     <img src={rewards} alt="" />
                 </div>
                 <span>Rewards</span>
-            </div>
+            </div></Link>
 
             <div className={cl.NavbarItem}>
                 <div className={cl.icon}>   

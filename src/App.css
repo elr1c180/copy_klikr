@@ -4,3 +4,7 @@ html {
   background: linear-gradient(to bottom right, black, #041E5B);
   overflow: hidden;
 }
+
+a {
+  text-decoration: none;
+}
