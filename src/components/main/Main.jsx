@@ -24,7 +24,7 @@ const MainComponent = () => {
 
             <div className={cl.Energy}>
                 <label for="enegry"> <img src={energy} alt="energy"/> <span>2000</span></label>
-                <progress id="energy" className={cl.energyBar} max="2000" value="100">100%</progress>
+                <progress id="energy" className={cl.energyBar} max="2000" value="100"></progress>
             </div>
         </div>
     )

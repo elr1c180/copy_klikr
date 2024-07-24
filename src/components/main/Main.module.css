@@ -28,6 +28,8 @@
 
 .energyBar {
     width: 70%;
+    height: 25px;
+    accent-color: #F9C43C;
 }
 
 label {
