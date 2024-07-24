@@ -8,10 +8,10 @@ const Rewards = () => {
     BackButton.show();
 
     BackButton.onClick(function() {
-        WebApp.showAlert("BackButton clicked");
+        window.Telegram.WebApp.showAlert("BackButton clicked");
         BackButton.hide();
     });
-    WebApp.onEvent('backButtonClicked', function() {
+    window.Telegram.WebApp.onEvent('backButtonClicked', function() {
         navigate('/main');
     });
 
