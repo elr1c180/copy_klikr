@@ -10,7 +10,7 @@ const MainComponent = () => {
         <div className={cl.MainComponent}>
             <div className={cl.Leadersboard}>
                 <div className={cl.Place}>
-                    <img src={top} alt="" />
+                    <img src={top} alt="top" />
                     <span>Place 27k <i class="fa-solid fa-chevron-right"></i></span>
                 </div>
                 <span className={cl.End}>Ends in</span>
@@ -23,7 +23,7 @@ const MainComponent = () => {
             </div>
 
             <div className={cl.Energy}>
-                <label for="enegry"> <img src={energy}/> <span>2000</span></label>
+                <label for="enegry"> <img src={energy} alt="energy"/> <span>2000</span></label>
                 <progress id="energy" className={cl.energyBar} max="2000" value="100">100%</progress>
             </div>
         </div>
