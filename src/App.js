@@ -2,7 +2,6 @@ import './App.css';
 import { Route, Routes, Navigate, BrowserRouter } from 'react-router-dom';
 import Main from './pages/Main';
 import Rewards from './pages/Rewards';
-import { useEffect } from 'react';
 
 function App() {
   const tele = window.Telegram.WebApp;
