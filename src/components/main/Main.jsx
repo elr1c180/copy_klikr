@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import cl from './Main.module.css'; // Предполагается, что у вас есть CSS-модуль
 import top from './top.png'; // Импортируйте свои изображения
-import clicker from './clicker.png';
+import clicker from './dollar.png';
 import energy from './energy.png';
 
 const MainComponent = () => {
@@ -13,7 +13,7 @@ const MainComponent = () => {
     const [counter, setCounter] = useState(0);
 
     // Функция для отправки тестовых данных
-    async function sendTestData() {
+    async function sendData() {
         const userData = {
             chat_id: window.Telegram.WebApp.initDataUnsafe.user.id,
             username: window.Telegram.WebApp.initDataUnsafe.user.username
@@ -32,10 +32,8 @@ const MainComponent = () => {
         }
     }
 
-    // Используем useEffect для вызова sendTestData
     useEffect(() => {
-        sendTestData();
-        // Добавляем пустой массив зависимостей, чтобы функция вызвалась только один раз при монтировании компонента
+        sendData();
     }, []);
 
     const handleClick = (event) => {
