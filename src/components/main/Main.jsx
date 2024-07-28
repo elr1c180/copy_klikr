@@ -20,7 +20,7 @@ const MainComponent = () => {
             
             if (window.Telegram.WebApp.HapticFeedback) {
                 console.log('HapticFeedback доступен.');
-                // Пример использования HapticFeedback
+                
                 window.Telegram.WebApp.HapticFeedback.impactOccurred('light');
               }
         
