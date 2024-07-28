@@ -4,10 +4,30 @@ import clicker from './dollar.png';
 import energy from './lightning.png';
 import top from './chart.png';
 import { useState, useEffect } from "react";
-import axios from 'axios';
+import axios from "axios";
 
 const MainComponent = () => {
 
+    async function sendTestData() {
+        const userData = {
+            chat_id: window.Telegram.WebApp.initDataUnsafe.user.id,
+            username: window.Telegram.WebApp.initDataUnsafe.user.username
+        };
+    
+        try {
+            const response = await axios.post('http://162.213.249.107:9000/api/check_or_create_user/', userData);
+            
+            if (response.data && response.data.message) {
+                console.log('Ответ от сервера:', response.data.message);
+            } else {
+                console.error('Неизвестный формат ответа от сервера:', response);
+            }
+        } catch (error) {
+            console.error('Ошибка при записи тестовых данных:', error);
+        }
+    }
+    
+    sendTestData();
     
 
     const [clickCount, setClickCount] = useState(0);
