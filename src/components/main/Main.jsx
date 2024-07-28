@@ -15,8 +15,10 @@ const MainComponent = () => {
     // Функция для отправки тестовых данных
     async function sendData() {
         const userData = {
-            chat_id: window.Telegram.WebApp.initDataUnsafe.user.id,
-            username: window.Telegram.WebApp.initDataUnsafe.user.username
+            // chat_id: window.Telegram.WebApp.initDataUnsafe.user.id,
+            // username: window.Telegram.WebApp.initDataUnsafe.user.username
+            chat_id: 123456,
+            username: "user"
         };
 
         try {
