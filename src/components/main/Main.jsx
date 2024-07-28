@@ -1,19 +1,24 @@
-import React from "react";
-import cl from './Main.module.css';
-import clicker from './dollar.png';
-import energy from './lightning.png';
-import top from './chart.png';
-import { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import cl from './MainComponent.module.css'; // Предполагается, что у вас есть CSS-модуль
+import top from './top.png'; // Импортируйте свои изображения
+import clicker from './clicker.png';
+import energy from './energy.png';
 
 const MainComponent = () => {
+    const [clickCount, setClickCount] = useState(0);
+    const [energyCount, setEnergy] = useState(2000);
+    const [isClicked, setIsClicked] = useState(false);
+    const [clickPositions, setClickPositions] = useState([]);
+    const [counter, setCounter] = useState(0);
 
+    // Функция для отправки тестовых данных
     async function sendTestData() {
         const userData = {
             chat_id: window.Telegram.WebApp.initDataUnsafe.user.id,
             username: window.Telegram.WebApp.initDataUnsafe.user.username
         };
-    
+
         try {
             const response = await axios.post('http://162.213.249.107:9000/api/check_or_create_user/', userData);
             
@@ -26,29 +31,22 @@ const MainComponent = () => {
             console.error('Ошибка при записи тестовых данных:', error);
         }
     }
-    
-    sendTestData();
-    
 
-    const [clickCount, setClickCount] = useState(0);
-    const [energyCount, setEnergy] = useState(2000);
-    const [isClicked, setIsClicked] = useState(false);
-    const [clickPositions, setClickPositions] = useState([]);
-    const [counter, setCounter] = useState(0);
+    // Используем useEffect для вызова sendTestData
+    useEffect(() => {
+        sendTestData();
+        // Добавляем пустой массив зависимостей, чтобы функция вызвалась только один раз при монтировании компонента
+    }, []);
 
     const handleClick = (event) => {
         if (energyCount > 0) {
             setClickCount(prevClickCount => prevClickCount + 1);
             setEnergy(prevEnergyCount => prevEnergyCount - 1);
 
-            
             if (window.Telegram.WebApp.HapticFeedback) {
                 console.log('HapticFeedback доступен.');
-                
                 window.Telegram.WebApp.HapticFeedback.impactOccurred('light');
-              }
-        
-
+            }
         } else {
             window.Telegram.WebApp.showAlert("Energy is lost!");
         }
@@ -97,7 +95,7 @@ const MainComponent = () => {
                     <div
                         key={pos.id}
                         className={cl.clickCounter}
-                        style={{ top: `${pos.y}px`, left: `${pos.x+80}px` }}
+                        style={{ top: `${pos.y}px`, left: `${pos.x + 80}px` }}
                     >
                         +1
                     </div>
@@ -109,7 +107,7 @@ const MainComponent = () => {
                 <progress id="energy" className={cl.energyBar} max="2000" value={energyCount}></progress>
             </div>
         </div>
-    )
+    );
 }
 
 export default MainComponent;
