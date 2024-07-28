@@ -3,7 +3,7 @@ import axios from 'axios';
 import cl from './Main.module.css'; // Предполагается, что у вас есть CSS-модуль
 import top from './top.png'; // Импортируйте свои изображения
 import clicker from './dollar.png';
-import energy from './energy.png';
+import energy from './lightning.png';
 
 const MainComponent = () => {
     const [clickCount, setClickCount] = useState(0);
