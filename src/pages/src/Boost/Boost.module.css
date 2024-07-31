@@ -19,6 +19,7 @@
 
 .Title, .Reward {
     color: white;
+    margin-top: -2px;
 }
 
 .Reward{
