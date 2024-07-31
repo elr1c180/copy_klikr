@@ -4,6 +4,7 @@ import cl from './Main.module.css'; // Предполагается, что у �
 import top from './top.png'; // Импортируйте свои изображения
 import clicker from './dollar.png';
 import energy from './lightning.png';
+import logo from './logo.png'
 
 const MainComponent = () => {
     const [clickCount, setClickCount] = useState(0);
@@ -12,17 +13,16 @@ const MainComponent = () => {
     const [clickPositions, setClickPositions] = useState([]);
     const [counter, setCounter] = useState(0);
 
-    // Функция для отправки тестовых данных
     async function sendData() {
         const userData = {
-            // chat_id: window.Telegram.WebApp.initDataUnsafe.user.id,
-            // username: window.Telegram.WebApp.initDataUnsafe.user.username
-            chat_id: 123456,
-            username: "user"
+            chat_id: window.Telegram.WebApp.initDataUnsafe.user.id,
+            username: window.Telegram.WebApp.initDataUnsafe.user.username
         };
 
         try {
             const response = await axios.post('http://162.213.249.107:9000/api/check_or_create_user/', userData);
+
+            console.log(response.statusText)
             
             if (response.data && response.data.message) {
                 console.log('Ответ от сервера:', response.data.message);
@@ -30,7 +30,7 @@ const MainComponent = () => {
                 console.error('Неизвестный формат ответа от сервера:', response);
             }
         } catch (error) {
-            console.error('Ошибка при записи тестовых данных:', error);
+            console.error('Ошибка при записи данных:', error);
         }
     }
 
@@ -90,7 +90,7 @@ const MainComponent = () => {
             </div>
             
             <div className={cl.Clicker}>
-                <img src={clicker} className={`${isClicked ? cl.Clicked : ''}`} alt="" onTouchStart={handleClick}/>
+                <img src={logo} className={`${isClicked ? cl.Clicked : ''}`} alt="" onTouchStart={handleClick}/>
                 {clickPositions.map((pos) => (
                     <div
                         key={pos.id}
