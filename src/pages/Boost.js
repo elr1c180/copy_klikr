@@ -22,7 +22,7 @@ const Boost = () => {
     return (
         <div className={cl.boostWrap}>
             <div className={cl.boostHeader}>
-                <img src={logo} />
+                <img src={logo} alt="logo_boost"/>
                 <br/>
                 <span>get boost & <span className={cl.whiteText}>earn points</span></span>
             </div>
