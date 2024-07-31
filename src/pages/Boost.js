@@ -20,6 +20,10 @@ const Boost = () => {
 
     return (
         <div className={cl.boostWrap}>
+            <div className={cl.boostHeader}>
+
+            </div>
+            
             <div className={cl.baseBlock}>
                 <div className={cl.Header}>
                     <span className={cl.Title}>

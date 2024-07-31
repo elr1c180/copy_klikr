@@ -18,9 +18,13 @@
     margin-right: auto;
 }
 
+.Title {
+    font-size: 14px;
+}
+
 .Title, .Reward {
     color: white;
-    margin-top: -2px;
+    margin-top: -4px;
 }
 
 .Reward{
