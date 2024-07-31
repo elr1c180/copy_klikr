@@ -3,9 +3,19 @@ import cl from './src/Boost/Boost.module.css'
 import { Link } from "react-router-dom";
 
 import tg from './src/Boost/telegram.png'
-// import X from './src/Boost/twitter.png'
+import X from './src/Boost/twitter.png'
 
 const Boost = () => {
+    var BackButton = window.Telegram.WebApp.BackButton;
+    BackButton.show();
+
+    BackButton.onClick(function() {
+        BackButton.hide();
+    });
+    window.Telegram.WebApp.onEvent('backButtonClicked', function() {
+        navigate('/main');
+    });
+
     return (
         <div className={cl.boostWrap}>
             <div className={cl.baseBlock}>
@@ -19,7 +29,7 @@ const Boost = () => {
                 </div>
                 
                 <Link to="https://t.me/QuickClickOfficialBot" className={cl.Button}>
-                <img src={tg} alt="telegram"/><h6>Join</h6>
+                <h6><img src={tg} alt="telegram"/>Join</h6>
                 </Link>
                 <div className={cl.Description}>
                     <span>Join the Telegram Chat to earn points</span>
@@ -36,8 +46,8 @@ const Boost = () => {
                     </span>
                 </div>
                 
-                <Link to="https://t.me/QuickClickOfficialBot" className={cl.Button}>
-                         <h6>Follow</h6>
+                <Link to="https://x.com/QuickClickBot" className={cl.Button}>
+                         <h6><img src={X} alt="twitter"/>Follow</h6>
                 </Link>
                 <div className={cl.Description}>
                     <span>Follow the Twitter Account to earn points</span>

@@ -60,6 +60,10 @@
     margin: 11px;
 }
 
+.Button img {
+    margin: -3px 5px;
+}
+
 .Description{
     color: #717283;
     margin-left: auto;
