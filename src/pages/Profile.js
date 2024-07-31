@@ -7,7 +7,6 @@ import profile from './src/Profile/profile.png'
 
 const Profile = () => {
     const [username, setUsername] = useState('');
-    const [userPhoto, setUserPhoto] = useState(profile);
 
     const navigate = useNavigate();
     var BackButton = window.Telegram.WebApp.BackButton;
@@ -26,7 +25,6 @@ const Profile = () => {
             const user = window.Telegram.WebApp.initDataUnsafe?.user;
             if (user) {
                 setUsername(user.username || `${user.first_name} ${user.last_name}`);
-                setUserPhoto(user.photo_url);
             }
         }
     }, []);
