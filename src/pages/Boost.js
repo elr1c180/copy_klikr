@@ -41,7 +41,7 @@ const Boost = () => {
                 💌 Invite friends to get more points\n
                 🏆 Invite Friends, Click Together, Win Big`;
 
-    let shareLink = `https://t.me/share/&text=${text}`
+    let shareLink = `https://t.me/share/text?text=${text}`
 
     return (
         <div className={cl.boostWrap}>
