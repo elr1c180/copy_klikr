@@ -33,8 +33,8 @@ const Boost = () => {
         }
     }, []);
 
-    let text = `You have been invited to ClickTap< br>
-                Rules are simple:< br>
+    let text = `You have been invited to ClickTap\n\n\n
+                Rules are simple:\n\n\n
 
                 👉 Click to earn points< br>
                 💌 Invite friends to get more points< br>
