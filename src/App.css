@@ -1,6 +1,6 @@
 html {
   width: 100%;
-  height: 120ch;
+  max-height: 120ch;
   background: linear-gradient(to bottom right, black, #041E5B);
   overflow-x: hidden;
 }
