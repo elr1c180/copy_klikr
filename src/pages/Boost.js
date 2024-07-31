@@ -33,12 +33,7 @@ const Boost = () => {
         }
     }, []);
 
-    let text = `You have been invited to ClickTap\n\n\n
-                Rules are simple:\n\n\n
-
-                👉 Click to earn points< br>
-                💌 Invite friends to get more points< br>
-                🏆 Invite Friends, Click Together, Win Big`;
+    let text = `You have been invited to ClickTap`;
                 
     let shareLink = `https://t.me/share/url?url=https://t.me/clicktapcoin_bot?start=${userId}&text=${text}`
 
@@ -107,19 +102,24 @@ const Boost = () => {
             <div className={cl.PartnerBlock}>
                 <div className={cl.Header}>
                     <span className={cl.Title}>
-                        Follow Twitter(X) Account
+                        Partnership Challenge
                     </span>
-                    <span className={cl.Reward}>
-                        5,000
+                </div>
+
+                <div className={cl.HeaderMain}>
+                    <span className={cl.TitleMain}>
+                        Earn up to <span className={cl.textGreen}>200$</span>
                     </span>
+                </div>
+
+                <div className={cl.MainText}>
+                Join our mission to expand our League system!<br/>3ring in projects or Telegram groups to join Klikr nd unlock exclusive rewards. The more partners u recruit, the eater benefits you'll receive.
                 </div>
                 
-                <Link to="https://x.com/QuickClickBot" className={cl.Button}>
-                         <h6><img src={X} alt="twitter"/>Follow</h6>
+                <Link to="https://t.me/moh4p" className={cl.Button}>
+                         <h6>Contact Us</h6>
                 </Link>
-                <div className={cl.Description}>
-                    <span>Follow the Twitter Account to earn points</span>
-                </div>
+    
             </div>
         </div>
     )
