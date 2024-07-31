@@ -6,6 +6,10 @@
     color: white;
 }
 
+.profileWrap hr {
+    width: 70%;
+}
+
 .profileImg {
     width: 48px;
 }
