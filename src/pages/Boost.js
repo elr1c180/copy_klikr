@@ -37,7 +37,7 @@ const Boost = () => {
                 </div>
                 
                 <Link to="https://t.me/QuickClickOfficialBot" className={cl.Button}>
-                        <img src={X} alt="twitter"/> <h6>Follow</h6>
+                         <h6>Follow</h6>
                 </Link>
                 <div className={cl.Description}>
                     <span>Follow the Twitter Account to earn points</span>
