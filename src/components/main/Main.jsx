@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import cl from './Main.module.css'; // Предполагается, что у вас есть CSS-модуль
-import top from './top.png'; // Импортируйте свои изображения
-import clicker from './dollar.png';
+import cl from './Main.module.css';
+import top from './top.png';
 import energy from './lightning.png';
 import logo from './logo.png'
 
