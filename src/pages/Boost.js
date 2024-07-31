@@ -33,11 +33,11 @@ const Boost = () => {
         }
     }, []);
 
-    let text = `You have been invited to ClickTap</br>
-                Rules are simple:</br>
+    let text = `You have been invited to ClickTap< br>
+                Rules are simple:< br>
 
-                👉 Click to earn points</br>
-                💌 Invite friends to get more points</br>
+                👉 Click to earn points< br>
+                💌 Invite friends to get more points< br>
                 🏆 Invite Friends, Click Together, Win Big`;
                 
     let shareLink = `https://t.me/share/url?url=https://t.me/clicktapcoin_bot?start=${userId}&text=${text}`
