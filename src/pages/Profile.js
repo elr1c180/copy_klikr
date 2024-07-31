@@ -18,7 +18,7 @@ const Profile = () => {
     }, []);
     return (
         <div className={cl.profileWrap}>
-            <img src={userPhoto} className={cl.profileImg} />
+            <img src={userPhoto} className={cl.profileImg} alt="profile"/>
             <p>{userId}</p>
         </div>
     )
