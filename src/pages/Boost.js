@@ -28,7 +28,7 @@ const Boost = () => {
         if (window.Telegram && window.Telegram.WebApp) {
             const user = window.Telegram.WebApp.initDataUnsafe?.user;
             if (user) {
-                setUserId(user.username || `${user.first_name} ${user.last_name}`);
+                setUserId(user.id || `${user.first_name} ${user.last_name}`);
             }
         }
     }, []);
@@ -87,6 +87,24 @@ const Boost = () => {
             </div>
 
             <div className={cl.baseBlock}>
+                <div className={cl.Header}>
+                    <span className={cl.Title}>
+                        Follow Twitter(X) Account
+                    </span>
+                    <span className={cl.Reward}>
+                        5,000
+                    </span>
+                </div>
+                
+                <Link to="https://x.com/QuickClickBot" className={cl.Button}>
+                         <h6><img src={X} alt="twitter"/>Follow</h6>
+                </Link>
+                <div className={cl.Description}>
+                    <span>Follow the Twitter Account to earn points</span>
+                </div>
+            </div>
+
+            <div className={cl.PartnerBlock}>
                 <div className={cl.Header}>
                     <span className={cl.Title}>
                         Follow Twitter(X) Account
