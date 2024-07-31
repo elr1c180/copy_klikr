@@ -19,12 +19,33 @@ const Boost = () => {
         navigate('/main');
     });
 
+    let userId = window.Telegram.WebApp.initDataUnsafe?.user.id;
+    // let text = '';
+
     return (
         <div className={cl.boostWrap}>
             <div className={cl.boostHeader}>
                 <img src={logo} alt="logo_boost"/>
                 <br/>
                 <span>get boost & <span className={cl.whiteText}>earn points</span></span>
+            </div>
+
+            <div className={cl.baseBlock}>
+                <div className={cl.Header}>
+                    <span className={cl.Title}>
+                        Invite Friend Now
+                    </span>
+                    <span className={cl.Reward}>
+                        50,000
+                    </span>
+                </div>
+                
+                <Link to="`https://t.me/share/url?url={url}&text={text}`" className={cl.Button}>
+                <h6><img src={tg} alt="telegram"/>{userId}</h6>
+                </Link>
+                <div className={cl.Description}>
+                    <span>50,000 points for inviting a friend</span>
+                </div>
             </div>
 
             <div className={cl.baseBlock}>
