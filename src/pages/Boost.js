@@ -2,12 +2,16 @@ import React from "react";
 import cl from './src/Boost/Boost.module.css'
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { useEffect } from "react";
 
 import tg from './src/Boost/telegram.png'
 import X from './src/Boost/twitter.png'
 import logo from '../components/main/logo.png'
 
 const Boost = () => {
+    const [userId, setUserId] = useState('');
+
     const navigate = useNavigate();
     var BackButton = window.Telegram.WebApp.BackButton;
     BackButton.show();
@@ -19,8 +23,17 @@ const Boost = () => {
         navigate('/main');
     });
 
-    let userId = window.Telegram.WebApp.initDataUnsafe?.user.id;
-    // let text = '';
+    useEffect(() => {
+
+        if (window.Telegram && window.Telegram.WebApp) {
+            const user = window.Telegram.WebApp.initDataUnsafe?.user;
+            if (user) {
+                setUserId(user.username || `${user.first_name} ${user.last_name}`);
+            }
+        }
+    }, []);
+
+    let shareLink = `https://t.me/share/url?url=${userId}&text={123}`
 
     return (
         <div className={cl.boostWrap}>
@@ -40,8 +53,8 @@ const Boost = () => {
                     </span>
                 </div>
                 
-                <Link to="`https://t.me/share/url?url={url}&text={text}`" className={cl.Button}>
-                <h6><img src={tg} alt="telegram"/>{userId}</h6>
+                <Link to={shareLink} className={cl.Button}>
+                <h6><img src={tg} alt="telegram"/>Share</h6>
                 </Link>
                 <div className={cl.Description}>
                     <span>50,000 points for inviting a friend</span>
