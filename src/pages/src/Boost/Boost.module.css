@@ -22,7 +22,7 @@
 }
 
 .Reward{
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 600;
     float: right;
 }
@@ -30,6 +30,7 @@
 .Button {
     margin-left: auto;
     margin-right: auto;
+    margin-top: 30px;
     text-align: center;
     color: black;
     font-weight: 600;
@@ -55,4 +56,13 @@
 
 .Button h6 {
     margin: 11px;
+}
+
+.Description{
+    color: #717283;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 12px;
+    margin-top: 5px;
 }

@@ -14,9 +14,13 @@ const Boost = () => {
                         50,000
                     </span>
                 </div>
+                
                 <Link to="https://t.me/QuickClickOfficialBot" className={cl.Button}>
                         <h6>Join</h6>
                 </Link>
+                <div className={cl.Description}>
+                    <span>Join the Telegram Chat to earn points</span>
+                </div>
             </div>
         </div>
     )
