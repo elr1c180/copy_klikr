@@ -76,3 +76,21 @@
     font-size: 12px;
     margin-top: 5px;
 }
+
+.boostHeader {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 25px;
+    color: #7E7E80;
+}
+
+.boostHeader img {
+    width: 35%;
+}
+
+.whiteText {
+    color: white;
+    font-weight: 600;
+}

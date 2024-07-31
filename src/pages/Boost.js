@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import tg from './src/Boost/telegram.png'
 import X from './src/Boost/twitter.png'
+import logo from '../components/main/logo.png'
 
 const Boost = () => {
     const navigate = useNavigate();
@@ -21,9 +22,11 @@ const Boost = () => {
     return (
         <div className={cl.boostWrap}>
             <div className={cl.boostHeader}>
-
+                <img src={logo} />
+                <br/>
+                <span>get boost & <span className={cl.whiteText}>earn points</span></span>
             </div>
-            
+
             <div className={cl.baseBlock}>
                 <div className={cl.Header}>
                     <span className={cl.Title}>
