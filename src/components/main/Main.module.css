@@ -15,7 +15,7 @@
 }
 
 .Clicker img {
-    width: 45%;
+    width: 55%;
     transition: 0.5s all;
     position: relative
 }
@@ -75,7 +75,7 @@ label > span {
 }
 
 .Clicked {
-    width: 43%!important;
+    width: 53%!important;
     transition: 0.5s all;
 }
 
