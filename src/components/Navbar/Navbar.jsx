@@ -11,7 +11,7 @@ const Navbar = () => {
     return (
         <div className={cl.Navbar}>
 
-                <Link to="/rewards/"  className={cl.NavbarItem}>
+                <Link to="/boost/"  className={cl.NavbarItem}>
                         <div className={cl.icon}>   
                             <img src={rocket} alt="" />
                         </div>
