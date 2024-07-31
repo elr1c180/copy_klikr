@@ -3,7 +3,7 @@ import cl from './src/Boost/Boost.module.css'
 import { Link } from "react-router-dom";
 
 import tg from './src/Boost/telegram.png'
-import X from './src/Boost/twitter.png'
+// import X from './src/Boost/twitter.png'
 
 const Boost = () => {
     return (
