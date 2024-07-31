@@ -1,7 +1,9 @@
 .profileWrap {
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
     width: 90%;
+    color: white;
 }
 
 .profileImg {
