@@ -11,7 +11,7 @@ const Profile = () => {
         if (window.Telegram && window.Telegram.WebApp) {
             const user = window.Telegram.WebApp.initDataUnsafe?.user;
             if (user) {
-                setUserId(user.id || `${user.first_name} ${user.last_name}`);
+                setUserId(user.username || `${user.first_name} ${user.last_name}`);
                 setUserPhoto(user.photo_url)
             }
         }
