@@ -33,7 +33,14 @@ const Boost = () => {
         }
     }, []);
 
-    let shareLink = `https://t.me/share/url?url=${userId}&text={123}`
+    let text = `https://t.me/clicktapcoin_bot?start=${userId}
+                You have been invited to ClickTap\n 
+                Rules are simple:\n\n
+
+                👉 Click to earn points\n
+                💌 Invite friends to get more points\n
+                🏆 Invite Friends, Click Together, Win Big`;
+    let shareLink = `https://t.me/share/url?url=${userId}&text=${text}`
 
     return (
         <div className={cl.boostWrap}>
