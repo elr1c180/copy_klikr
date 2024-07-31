@@ -32,7 +32,7 @@ const Navbar = () => {
                 <span>Rewards</span>
             </Link>
 
-            <Link to="/rewards/" className={cl.NavbarItem}>
+            <Link to="/profile/" className={cl.NavbarItem}>
                     <div className={cl.icon}>   
                         <img src={profile} alt="" />
                     </div>
