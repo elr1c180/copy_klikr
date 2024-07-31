@@ -1,11 +1,13 @@
 import React from "react";
 import cl from './src/Boost/Boost.module.css'
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 import tg from './src/Boost/telegram.png'
 import X from './src/Boost/twitter.png'
 
 const Boost = () => {
+    const navigate = useNavigate();
     var BackButton = window.Telegram.WebApp.BackButton;
     BackButton.show();
 
