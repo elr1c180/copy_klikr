@@ -2,6 +2,7 @@ import React from "react";
 import cl from './src/Profile/Profile.module.css'
 import { useEffect } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
     const [userId, setUserId] = useState('');
