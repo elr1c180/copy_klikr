@@ -5,6 +5,11 @@
     width: 90%;
     color: white;
     margin-top: 15%;
+    font-family: 'Maven Pro', sans-serif;
+}
+
+.profileWrap p {
+    font-size: 20px;
 }
 
 .profileWrap hr {

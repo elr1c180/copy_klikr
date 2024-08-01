@@ -6,36 +6,68 @@ import energy from './lightning.png';
 import logo from './logo.png'
 
 const MainComponent = () => {
+    const [username, setUsername] = useState('');
+    const [chatId, setChatId] = useState('');
     const [clickCount, setClickCount] = useState(0);
+    const [responseMessage, setResponseMessage] = useState(null);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
     const [energyCount, setEnergy] = useState(2000);
     const [isClicked, setIsClicked] = useState(false);
     const [clickPositions, setClickPositions] = useState([]);
     const [counter, setCounter] = useState(0);
+    useEffect(() => {
+        if (window.Telegram && window.Telegram.WebApp) {
+            const user = window.Telegram.WebApp.initDataUnsafe?.user;
+            if (user) {
+                setUsername(user.username || `${user.first_name} ${user.last_name}`);
+                setChatId(user.id);
+            } else {
+                setUsername('elesinanton');
+            }
+        }
+    }, []);
 
     async function sendData() {
         const userData = {
-            chat_id: window.Telegram.WebApp.initDataUnsafe.user.id,
-            username: window.Telegram.WebApp.initDataUnsafe.user.username
+            chat_id: chatId || 123,  // Используйте переменные состояния, если они доступны
+            username: username || "123"
         };
 
         try {
-            const response = await axios.post('http://162.213.249.107:9000/api/check_or_create_user/', userData);
+            const response = await fetch('https://clicktothesky.com/api/check_or_create_user/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userData),
+            });
 
-            console.log(response.statusText)
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            console.log('Response:', data);
             
-            if (response.data && response.data.message) {
-                console.log('Ответ от сервера:', response.data.message);
+            if (data && data.message) {
+                setResponseMessage(data.message);
             } else {
-                console.error('Неизвестный формат ответа от сервера:', response);
+                setResponseMessage('Неизвестный формат ответа от сервера');
             }
         } catch (error) {
             console.error('Ошибка при записи данных:', error);
+            setError(`Ошибка сети: ${error}`);
+        } finally {
+            setLoading(false);
         }
     }
 
     useEffect(() => {
         sendData();
-    }, []);
+    }, [username, chatId]);
+
+    
 
     const handleClick = (event) => {
         if (energyCount > 0) {
@@ -78,6 +110,9 @@ const MainComponent = () => {
     return (
         <div className={cl.MainComponent}>
             <div className={cl.Leadersboard}>
+            {loading && <p>Загрузка...</p>}
+            {error && <p style={{ color: 'red' }}>{error}</p>}
+            {responseMessage && <p>Ответ от сервера: {responseMessage}</p>}
                 <div className={cl.Place}>
                     <img src={top} alt="top"/>
                     <span>Place 27k <i className="fa-solid fa-chevron-right"></i></span>

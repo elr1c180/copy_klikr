@@ -25,6 +25,8 @@ const Profile = () => {
             const user = window.Telegram.WebApp.initDataUnsafe?.user;
             if (user) {
                 setUsername(user.username || `${user.first_name} ${user.last_name}`);
+            } else {
+                setUsername('elesinanton')
             }
         }
     }, []);
