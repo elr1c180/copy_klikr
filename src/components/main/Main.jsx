@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
 import cl from './Main.module.css';
 import top from './top.png';
 import energy from './lightning.png';
@@ -16,6 +16,7 @@ const MainComponent = () => {
     const [isClicked, setIsClicked] = useState(false);
     const [clickPositions, setClickPositions] = useState([]);
     const [counter, setCounter] = useState(0);
+
     useEffect(() => {
         if (window.Telegram && window.Telegram.WebApp) {
             const user = window.Telegram.WebApp.initDataUnsafe?.user;
@@ -30,8 +31,8 @@ const MainComponent = () => {
 
     async function sendData() {
         const userData = {
-            chat_id: chatId || 123,  // Используйте переменные состояния, если они доступны
-            username: username || "123"
+            chat_id: chatId,
+            username: username
         };
 
         try {
@@ -67,37 +68,95 @@ const MainComponent = () => {
         sendData();
     }, [username, chatId]);
 
+
+    useEffect(() => {
+        const fetchUserProfile = async () => {
+            try {
+                const response = await fetch(`https://clicktothesky.com/api/get_user_profile/?chat_id=${chatId}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                setClickCount(data.balance);
+                setEnergy(data.energy);
+            } catch (error) {
+                console.error('Ошибка при получении данных пользователя:', error);
+                setError(`Ошибка сети: ${error.message}`);
+            } finally {
+                setLoading(false);
+            }
+        };
+    
+        if (chatId) {
+            fetchUserProfile();
+        }
+    }, [chatId]);
+    
+    useEffect(() => {
+        let timer;
+        if (!isClicked && energyCount < 2000) {
+            timer = setTimeout(() => {
+                setEnergy(prevEnergy => {
+                    // Установите максимальное значение энергии
+                    const newEnergy = Math.min(prevEnergy + 1, 2000);
+                    setEnergy(newEnergy);
+                    return newEnergy;
+                });
+            }, 180000); // 3 минуты
+        }
+    
+        return () => clearTimeout(timer);
+    }, [isClicked, energyCount]);
     
 
-    const handleClick = (event) => {
+    async function handleClick(event) {
         if (energyCount > 0) {
             setClickCount(prevClickCount => prevClickCount + 1);
             setEnergy(prevEnergyCount => prevEnergyCount - 1);
-
+    
             if (window.Telegram.WebApp.HapticFeedback) {
                 console.log('HapticFeedback доступен.');
                 window.Telegram.WebApp.HapticFeedback.impactOccurred('light');
             }
+    
+            try {
+                const response = await fetch('https://clicktothesky.com/api/update_balance_and_energy/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ chat_id: chatId }),
+                });
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                setClickCount(data.balance);
+                setEnergy(data.energy);
+            } catch (error) {
+                console.error('Ошибка при обновлении данных:', error);
+                setError(`Ошибка сети: ${error.message}`);
+            }
+    
+            setIsClicked(true);
+            setCounter(prevCounter => prevCounter + 1);
+    
+            const boundingRect = event.currentTarget.getBoundingClientRect();
+            const offsetX = event.touches ? event.touches[0].clientX - boundingRect.left : event.clientX - boundingRect.left;
+            const offsetY = event.touches ? event.touches[0].clientY - boundingRect.top : event.clientY - boundingRect.top;
+    
+            setClickPositions(prevClickPositions => [
+                ...prevClickPositions, 
+                { x: offsetX, y: offsetY, id: counter }
+            ]);
+    
+            setTimeout(() => {
+                setIsClicked(false);
+            }, 500);
         } else {
             window.Telegram.WebApp.showAlert("Energy is lost!");
         }
-
-        setIsClicked(true);
-        setCounter(prevCounter => prevCounter + 1);
-
-        const boundingRect = event.currentTarget.getBoundingClientRect();
-        const offsetX = event.touches ? event.touches[0].clientX - boundingRect.left : event.clientX - boundingRect.left;
-        const offsetY = event.touches ? event.touches[0].clientY - boundingRect.top : event.clientY - boundingRect.top;
-
-        setClickPositions(prevClickPositions => [
-            ...prevClickPositions, 
-            { x: offsetX, y: offsetY, id: counter }
-        ]);
-
-        setTimeout(() => {
-            setIsClicked(false);
-        }, 500);
-    };
+    }
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -110,12 +169,9 @@ const MainComponent = () => {
     return (
         <div className={cl.MainComponent}>
             <div className={cl.Leadersboard}>
-            {loading && <p>Загрузка...</p>}
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            {responseMessage && <p>Ответ от сервера: {responseMessage}</p>}
                 <div className={cl.Place}>
                     <img src={top} alt="top"/>
-                    <span>Place 27k <i className="fa-solid fa-chevron-right"></i></span>
+                    <Link to="/Leaderboard">Place 27k <i className="fa-solid fa-chevron-right"></i></Link>
                 </div>
                 <span className={cl.End}>Ends in</span>
             </div>

@@ -12,6 +12,27 @@
     margin-top: 15px;
 }
 
+.baseBlock.Completed {
+    background-color: rgba(0, 0, 0, 0.1); /* Полупрозрачный фон */
+    opacity: 0.5; /* Полупрозрачность */
+    pointer-events: none; /* Отключение событий */
+}
+
+.Button {
+    /* Ваши стили для кнопки */
+    background-color: #007bff; /* Цвет по умолчанию */
+    color: white; /* Цвет текста */
+    border: none; /* Без границ */
+    padding: 10px 20px; /* Отступы */
+    cursor: pointer; /* Курсор в виде руки */
+}
+
+.Button.Completed {
+    background-color: #14643F; /* Цвет кнопки при завершении */
+    color: white; /* Цвет текста */
+    cursor: not-allowed; /* Курсор не доступен */
+}
+
 .PartnerBlock {
     text-align: center;
     background-color: #313246;
@@ -36,6 +57,10 @@
     width: 90%;
     margin-left: auto;
     margin-right: auto;
+}
+
+button {
+    border:0;
 }
 
 .Title {

@@ -17,6 +17,7 @@ function App() {
                     <Route path="/boost" element={<Boost />} />
                     <Route path="/Profile" element={<Profile />} />
                     <Route path="/rewards" element={<Rewards />} />
+                    <Route path="/Leaderboard" element={<Rewards />} />
                     <Route path="*" element={<Navigate to="/" />} />
                 </Routes>
   

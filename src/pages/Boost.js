@@ -11,6 +11,9 @@ import logo from '../components/main/logo.png'
 
 const Boost = () => {
     const [userId, setUserId] = useState('');
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     const navigate = useNavigate();
     var BackButton = window.Telegram.WebApp.BackButton;
@@ -22,6 +25,9 @@ const Boost = () => {
     window.Telegram.WebApp.onEvent('backButtonClicked', function() {
         navigate('/main');
     });
+    let text = `You have been invited to ClickTap`;
+                
+    let shareLink = `https://t.me/share/url?url=https://t.me/clicktapcoin_bot?start=${userId}&text=${text}`
 
     useEffect(() => {
 
@@ -33,10 +39,91 @@ const Boost = () => {
         }
     }, []);
 
-    let text = `You have been invited to ClickTap`;
-                
-    let shareLink = `https://t.me/share/url?url=https://t.me/clicktapcoin_bot?start=${userId}&text=${text}`
+    
+    useEffect(() => {
+        async function fetchUser() {
+            if (!userId) return; // Если userId пуст, ничего не делать
+                const response = await fetch(`https://clicktothesky.com/api/get_user_profile/?chat_id=7026677811`);
+                if (!response.ok) {
+                    throw new Error('Ошибка при загрузке данных пользователя');
+                }
+                const data = await response.json();
+                setUser(data);
+            try {
+                const response = await fetch(`https://clicktothesky.com/api/get_user_profile/?chat_id=${userId}`);
+                if (!response.ok) {
+                    throw new Error('Ошибка при загрузке данных пользователя');
+                }
+                const data = await response.json();
+                setUser(data);
+            } catch (error) {
+                setError('Ошибка при загрузке данных пользователя');
+                console.error('Ошибка при загрузке данных пользователя:', error);
+            } finally {
+                setLoading(false);
+            }
+        }
 
+        fetchUser();
+    }, [userId]);
+
+    const handleButtonClickTelegram = async () => {
+        try {
+            // Отправляем запрос на обновление данных пользователя
+            const response = await fetch('https://clicktothesky.com/api/update_user_profile/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ chat_id: userId, platform: 'telegram' }),
+            });
+            if (!response.ok) {
+                throw new Error('Ошибка при обновлении профиля');
+            }
+
+            // Обновляем состояние пользователя
+            setUser(prevUser => ({ ...prevUser, telegram: true, balance: (prevUser?.balance || 0) + 50000 }));
+        } catch (error) {
+            console.error('Ошибка при обновлении профиля:', error);
+            setError('Ошибка при обновлении профиля');
+        } finally {
+            // После обновления данных, открываем ссылку
+            window.location.href = "https://t.me/QuickClickOfficialBot";
+        }
+    };
+
+    const handleButtonClickTwitter = async () => {
+        try {
+            // Отправляем запрос на обновление данных пользователя
+            const response = await fetch('https://clicktothesky.com/api/update_user_profile/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ chat_id: userId, platform: 'twitter' }),
+            });
+            if (!response.ok) {
+                throw new Error('Ошибка при обновлении профиля');
+            }
+
+            // Обновляем состояние пользователя
+            setUser(prevUser => ({ ...prevUser, twitter: true, balance: (prevUser?.balance || 0) + 50000 }));
+        } catch (error) {
+            console.error('Ошибка при обновлении профиля:', error);
+            setError('Ошибка при обновлении профиля');
+        } finally {
+            // После обновления данных, открываем ссылку
+            window.location.href = "https://x.com/QuickClickBot";
+        }
+    };
+
+    if (loading) {
+        return <p>Loading...</p>;
+    }
+
+    if (error) {
+        return <p>Error: {error}</p>;
+    }
     return (
         <div className={cl.boostWrap}>
             <div className={cl.boostHeader}>
@@ -63,7 +150,7 @@ const Boost = () => {
                 </div>
             </div>
 
-            <div className={cl.baseBlock}>
+            <div className={`${cl.baseBlock} ${user && user.telegram ? cl.Completed : ''}`}>
                 <div className={cl.Header}>
                     <span className={cl.Title}>
                         Join Telegram Chat
@@ -73,15 +160,15 @@ const Boost = () => {
                     </span>
                 </div>
                 
-                <Link to="https://t.me/QuickClickOfficialBot" className={cl.Button}>
+                <button to="https://t.me/QuickClickOfficialBot" className={`${cl.Button} ${user && user.telegram ? cl.Completed : ''}`} disabled={user && user.telegram} onClick={handleButtonClickTelegram}>
                 <h6><img src={tg} alt="telegram"/>Join</h6>
-                </Link>
+                </button>
                 <div className={cl.Description}>
                     <span>Join the Telegram Chat to earn points</span>
                 </div>
             </div>
 
-            <div className={cl.baseBlock}>
+            <div className={`${cl.baseBlock} ${user.twitter ? cl.Completed : ''}`}>
                 <div className={cl.Header}>
                     <span className={cl.Title}>
                         Follow Twitter(X) Account
@@ -91,9 +178,9 @@ const Boost = () => {
                     </span>
                 </div>
                 
-                <Link to="https://x.com/QuickClickBot" className={cl.Button}>
+                <button to="https://x.com/QuickClickBot" className={`${cl.Button} ${user && user.twitter ? cl.Completed : ''}`} disabled={user && user.twitter} onClick={handleButtonClickTwitter}>
                          <h6><img src={X} alt="twitter"/>Follow</h6>
-                </Link>
+                </button>
                 <div className={cl.Description}>
                     <span>Follow the Twitter Account to earn points</span>
                 </div>
@@ -116,7 +203,7 @@ const Boost = () => {
                 Join our mission to expand our League system!<br/>3ring in projects or Telegram groups to join Klikr nd unlock exclusive rewards. The more partners u recruit, the eater benefits you'll receive.
                 </div>
                 
-                <Link to="https://t.me/moh4p" className={cl.Button}>
+                <Link to="https://t.me/MoneyWithNeno" className={cl.Button}>
                          <h6>Contact Us</h6>
                 </Link>
     
