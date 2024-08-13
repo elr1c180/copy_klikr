@@ -18,7 +18,7 @@ const Navbar = () => {
                         <span>Boost</span>
                 </Link>
 
-            <Link to="/rewards/" className={cl.NavbarItem}>
+            <Link to="/Leagues/" className={cl.NavbarItem}>
                 <div className={cl.icon}>  
                     <img src={leag} alt="" />
                 </div>
@@ -36,7 +36,7 @@ const Navbar = () => {
                     <div className={cl.icon}>   
                         <img src={profile} alt="" />
                     </div>
-                <span>Profile</span>
+                <span>Wallet</span>
             </Link>
         </div>
     )

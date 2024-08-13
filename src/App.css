@@ -1,9 +1,29 @@
-html {
+:root {
+  --tg-color-scheme: black;
+}
+body {
   width: 100%;
   height: 120ch;
   background: linear-gradient(to bottom right, black, #041E5B);
+  --tg-theme-bg-color:black;
+}
+.loading {
+  text-align: center;
+  margin-top: 20%;
+}
+.loading > img {
+  width: 80%;
+}
+.LoadingText {
+  font-size: 26px;
+  font-weight: 600;
+  color: white;
 }
 
 a {
   text-decoration: none;
+}
+
+body.tc-disable-scroll {
+  position: relative;
 }

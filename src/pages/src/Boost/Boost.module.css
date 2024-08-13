@@ -157,3 +157,16 @@ button {
     color: white;
     font-weight: 600;
 }
+
+.loading {
+    text-align: center;
+    margin-top: 20%;
+}
+.loading > img {
+    width: 80%;
+}
+.LoadingText {
+    font-size: 26px;
+    font-weight: 600;
+    color: white;
+}

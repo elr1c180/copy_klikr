@@ -1,0 +1,83 @@
+.leagueWrap {
+    width: 90%;
+    margin-top: 15%;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+}
+
+.loading {
+    text-align: center;
+    margin-top: 20%;
+}
+.loading > img {
+    width: 80%;
+}
+.LoadingText {
+    font-size: 26px;
+    font-weight: 600;
+    color: white;
+}
+
+
+a{
+    color: inherit;
+    
+}
+
+.head {
+    font-size: 18px;
+    
+}
+
+.leagueScore {
+    display: flex;
+    padding: 7px 20px;
+}
+
+.leagueInfo {
+    display: flex;
+    margin-top: 10%;
+    width: 85%;
+    margin-right: auto;
+    margin-left: auto;
+    
+}
+
+.leagueInfo {
+    background-color: rgba(223, 220, 220, 0.26);
+    border-radius: 10px;
+    padding: 7px 10px;
+}
+
+.infoName {
+    font-size: 14px;
+    margin-bottom: -4px;
+}
+
+.league {
+    background-color: #161620;
+    border-radius: 10px;
+    padding-bottom: 20px;
+}
+
+.titleLeague {
+    font-size: 14px;
+    padding: 25px 20px;
+}
+.currentScore, .Place {
+    width: 50%;
+}
+
+.Place {
+    text-align: right;
+}
+
+.counter {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.infoScore, .infoPlace {
+    color: #81808E;
+}

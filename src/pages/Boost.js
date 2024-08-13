@@ -4,12 +4,32 @@ import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 import tg from './src/Boost/telegram.png'
 import X from './src/Boost/twitter.png'
 import logo from '../components/main/logo.png'
 
 const Boost = () => {
+    const location = useLocation();
+
+  useEffect(() => {
+    // Проверяем текущий маршрут
+    const isBoostPage = location.pathname === '/boost/';
+
+    // Устанавливаем overflow в зависимости от текущего маршрута
+    document.body.style.overflow = isBoostPage ? 'auto' : 'hidden';
+
+    // Очистка стиля при размонтировании компонента
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [location.pathname]);
+
+  console.log(location.pathname)
+    window.Telegram.WebApp.setBackgroundColor('#FFFFFF');
+    window.Telegram.WebApp.setHeaderColor('#000000');
+    
     const [userId, setUserId] = useState('');
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -25,7 +45,7 @@ const Boost = () => {
     window.Telegram.WebApp.onEvent('backButtonClicked', function() {
         navigate('/main');
     });
-    let text = `You have been invited to ClickTap`;
+    let text = `You have been invited to QuickClick`;
                 
     let shareLink = `https://t.me/share/url?url=https://t.me/clicktapcoin_bot?start=${userId}&text=${text}`
 
@@ -43,7 +63,7 @@ const Boost = () => {
     useEffect(() => {
         async function fetchUser() {
             if (!userId) return; // Если userId пуст, ничего не делать
-                const response = await fetch(`https://clicktothesky.com/api/get_user_profile/?chat_id=7026677811`);
+                const response = await fetch(`https://clicktothesky.com/api/get_user_profile/?chat_id=${userId}`);
                 if (!response.ok) {
                     throw new Error('Ошибка при загрузке данных пользователя');
                 }
@@ -118,7 +138,7 @@ const Boost = () => {
     };
 
     if (loading) {
-        return <p>Loading...</p>;
+        return <div className={cl.loading}><img src={logo} /><p className={cl.LoadingText}>Loading...</p></div>;
     }
 
     if (error) {
@@ -189,18 +209,18 @@ const Boost = () => {
             <div className={cl.PartnerBlock}>
                 <div className={cl.Header}>
                     <span className={cl.Title}>
-                        Partnership Challenge
+                    PARTNERSHIP CHALLENGE
                     </span>
                 </div>
 
                 <div className={cl.HeaderMain}>
                     <span className={cl.TitleMain}>
-                        Earn up to <span className={cl.textGreen}>200$</span>
+                        Earn up to <span className={cl.textGreen}>500$</span>
                     </span>
                 </div>
 
                 <div className={cl.MainText}>
-                Join our mission to expand our League system!<br/>3ring in projects or Telegram groups to join Klikr nd unlock exclusive rewards. The more partners u recruit, the eater benefits you'll receive.
+                Join our mission to expand our League system!<br/>Bring in projects or Telegram groups to join QuickClick and receive $500 commission. The more partners you recruit, the greater benefits you’ll receive.
                 </div>
                 
                 <Link to="https://t.me/MoneyWithNeno" className={cl.Button}>

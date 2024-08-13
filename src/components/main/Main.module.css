@@ -1,4 +1,4 @@
-.MainComponent{
+.MainComponent {
     margin-left: auto;
     margin-right: auto;
     bottom: 0;
@@ -17,7 +17,7 @@
 .Clicker img {
     width: 55%;
     transition: 0.5s all;
-    position: relative
+    position: relative;
 }
 
 .Energy {
@@ -27,7 +27,7 @@
     text-align: center;
     color: white;
     margin-top: 25%;
-    display:flex;
+    display: flex;
 }
 
 .energyBar {
@@ -47,6 +47,71 @@ label > span {
     font-weight: 600;
 }
 
+/* Popup Styles */
+.popupOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Ensure the popup is above the main content */
+}
+
+.popupContent {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+}
+
+.popupContent h2 {
+    margin-top: 0;
+}
+
+.popupContent ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.popupContent li {
+    margin: 5px 0;
+}
+
+.popupContent button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Loading Styles */
+.loading {
+    text-align: center;
+    margin-top: 20%;
+}
+
+.loading > img {
+    width: 80%;
+}
+
+.LoadingText {
+    font-size: 26px;
+    font-weight: 600;
+    color: white;
+}
+
+/* Score Styles */
 .Score {
     margin-left: auto;
     margin-right: auto;
@@ -56,10 +121,18 @@ label > span {
     font-size: 26px;
 }
 
+/* Leadersboard Styles */
+.Place > a {
+    color: white;
+}
+
+.Place > a:focus {
+    color: white;
+}
+
 .Leadersboard {
     margin-left: auto;
     margin-right: auto;
-
     text-align: center;
     color: white;
 }
@@ -68,17 +141,22 @@ label > span {
     text-transform: uppercase;
     font-size: 22px;
     font-weight: 600;
+    color: white;
+    outline: none;
 }
 
+/* End Styles */
 .End {
     color: #B1B0B5;
 }
 
+/* Clicked Styles */
 .Clicked {
     width: 53%!important;
     transition: 0.5s all;
 }
 
+/* ClickCounter Styles */
 .clickCounter {
     position: absolute;
     color: white;
@@ -88,17 +166,6 @@ label > span {
     font-weight: 600;
     pointer-events: none;
     animation: fadeInOut 1s ease-in-out forwards;
-}
-
-@keyframes fadeInOut {
-    0% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(-130px);
-    }
 }
 
 @keyframes fadeInOut {

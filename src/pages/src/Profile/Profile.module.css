@@ -8,14 +8,75 @@
     font-family: 'Maven Pro', sans-serif;
 }
 
-.profileWrap p {
-    font-size: 20px;
-}
-
-.profileWrap hr {
-    width: 70%;
+.profileWrap {
+    text-align: center;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .profileImg {
+    width: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.divider {
+    margin: 20px 0;
+    border: 1px solid #ddd;
+}
+
+.centerButton {
+    margin: 20px 0;
+}
+
+.infoSection {
+    text-align: left;
+    padding: 0 20px;
+}
+
+.infoSection h2 {
+    font-size: 16px;
+    color: #a5a5a5;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.infoSection p {
+    font-size: 16px;
+    color: #a5a5a5;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+
+.loading {
+    text-align: center;
+    margin-top: 20%;
+}
+.loading > img {
+    width: 80%;
+}
+.LoadingText {
+    font-size: 26px;
+    font-weight: 600;
+    color: white;
+}
+
+.profileWrap p {
+    font-size: 14px;
+}
+
+
+.profileImg {
     width: 48px;
+}
+
+.centerButton{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
 }
